@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 public class Main {
     public static void main(String[] args) {
+        port(getHerokuAssignedPort());
  before((request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.header("Access-Control-Request-Method", "*");
@@ -62,6 +63,13 @@ public class Main {
           
          
         });
+    }
+    public static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 8080; //Retorna el puerto por defecto en caso de no estar en Heroku.
     }
 }
 
