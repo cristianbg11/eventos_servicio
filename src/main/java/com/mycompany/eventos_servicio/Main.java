@@ -69,7 +69,7 @@ public class Main {
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
-        return 8080; //Retorna el puerto por defecto en caso de no estar en Heroku.
+        return 4567; //Retorna el puerto por defecto en caso de no estar en Heroku.
     }
 }
 
